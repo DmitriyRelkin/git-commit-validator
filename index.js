@@ -2,42 +2,44 @@ const path = require('path');
 const fs = require('fs');
 const process = require('process');
 
+const GIT_DIRECTORY = '../../.git';
+const ORIGINAL_GIT_HOOK_FILE = '../../.git/hooks/commit-msg.sample';
+const PREPARED_GIT_HOOK_FILE = '../../.git/hooks/commit-msg';
+const NEW_GIT_HOOK = './validate-commit-msg.js';
 
-if (fs.existsSync('../../.git')) {
+if (fs.existsSync(GIT_DIRECTORY)) {
   prepareGitHook();
   replaceGitHook();
 }
 
-
 function replaceGitHook() {
-  var newGitHook;
-  const changedCommitFileFormat = '../../.git/hooks/commit-msg';
-
-  fs.readFile('./git-commit-validator.js', (err, data) => {
-    console.log('Take data from git-commit-validator');
-    if (err) throw err;
-    newGitHook = data;
-
-    fs.writeFile(changedCommitFileFormat, newGitHook, (err) => {
-      console.log('Changing standart git hook')
+  var readedGitHookData;
+  if (fs.existsSync(ORIGINAL_GIT_HOOK_FILE)) {
+    fs.readFile(NEW_GIT_HOOK, (err, data) => {
       if (err) throw err;
-      console.log('The git hook has been saved!');
+      fs.writeFile(PREPARED_GIT_HOOK_FILE, data, (err) => {
+        console.log('Adding new git hook...')
+        if (err) throw err;
+        console.log('Git hook has been added! =)');
+      });
     });
-  });
-}
-
-// RENAME
-function prepareGitHook() {
-  const msgCommitFile = '../../.git/hooks/commit-msg.sample';
-  const changedCommitFileFormat = '../../.git/hooks/commit-msg';
-  console.log('Preparing git hook');
-
-  if (fs.existsSync(msgCommitFile)) {
-    fs.rename(msgCommitFile, changedCommitFileFormat, (err) => {
-      if (err) throw err;
-    console.log('Preparing complete!');
-  });
   }
 }
 
-// TODO: Need to add the check if git hook not available
+function prepareGitHook() {
+  console.log('Preparing new git hook...');
+  if (fs.existsSync(ORIGINAL_GIT_HOOK_FILE)) {
+    fs.rename(ORIGINAL_GIT_HOOK_FILE, PREPARED_GIT_HOOK_FILE, (err) => {
+      if (err) throw err;
+      console.log('Preparing complete!');
+    });
+  } else {
+    console.log(
+    `
+    Unfortunately, git-hook-msg will not be installed,
+    because not found original git hook file. =(
+    
+    `
+    );
+  }
+}
