@@ -1,0 +1,8 @@
+{
+  "name": "git-commit-validator",
+  "version": "1.0.0",
+  "description": "A demo package for the development",
+  "main": "index.js",
+  "author": "Dmitriy Relkin",
+  "license": "ISC"
+}
