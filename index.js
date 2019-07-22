@@ -14,7 +14,8 @@ if (fs.existsSync(GIT_DIRECTORY)) {
 
 function replaceGitHook() {
   var readedGitHookData;
-  if (fs.existsSync(ORIGINAL_GIT_HOOK_FILE)) {
+  if (fs.existsSync(PREPARED_GIT_HOOK_FILE)) {
+
     fs.readFile(NEW_GIT_HOOK, (err, data) => {
       if (err) throw err;
       fs.writeFile(PREPARED_GIT_HOOK_FILE, data, (err) => {
