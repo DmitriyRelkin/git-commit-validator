@@ -18,7 +18,7 @@ function replaceGitHook() {
     if (err) throw err;
     newGitHook = data;
 
-    writeFile(changedCommitFileFormat, newGitHook, (err) => {
+    fs.writeFile(changedCommitFileFormat, newGitHook, (err) => {
       console.log('Changing standart git hook')
       if (err) throw err;
       console.log('The git hook has been saved!');
