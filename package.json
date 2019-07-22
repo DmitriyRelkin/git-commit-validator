@@ -1,12 +1,12 @@
 {
-  "name": "git-commit-validator",
-  "version": "0.0.2",
+  "name": "commit-msg-validator",
+  "version": "0.0.3",
   "description": "A demo package for the development",
   "main": "index.js",
   "author": "Dmitriy Relkin",
   "license": "ISC",
   "scripts": {
-    "commit-validator:init": "node index.js",
-    "postinstall": "npm run commit-validator:init"
+    "commit-msg-validator:init": "node index.js",
+    "postinstall": "npm run commit-msg-validator:init"
   }
 }
