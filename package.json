@@ -1,6 +1,6 @@
 {
   "name": "commit-msg-validator",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A demo package for the development",
   "main": "index.js",
   "author": "Dmitriy Relkin",
