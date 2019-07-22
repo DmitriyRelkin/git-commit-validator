@@ -5,7 +5,7 @@ const process = require('process');
 const GIT_DIRECTORY = '../../.git';
 const ORIGINAL_GIT_HOOK_FILE = '../../.git/hooks/commit-msg.sample';
 const PREPARED_GIT_HOOK_FILE = '../../.git/hooks/commit-msg';
-const NEW_GIT_HOOK = './validate-commit-msg.js';
+const NEW_GIT_HOOK = './commit-msg.js';
 
 if (fs.existsSync(GIT_DIRECTORY)) {
   prepareGitHook();
@@ -38,7 +38,6 @@ function prepareGitHook() {
     `
     Unfortunately, git-hook-msg will not be installed,
     because not found original git hook file. =(
-    
     `
     );
   }
